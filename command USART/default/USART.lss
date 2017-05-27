@@ -1,0 +1,1105 @@
+
+USART.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000514  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000080  00800060  00000514  000005a8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000021  008000e0  008000e0  00000628  2**0
+                  ALLOC
+  3 .debug_aranges 00000060  00000000  00000000  00000628  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 0000016f  00000000  00000000  00000688  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000651  00000000  00000000  000007f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000378  00000000  00000000  00000e48  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000765  00000000  00000000  000011c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000140  00000000  00000000  00001928  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000001ee  00000000  00000000  00001a68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000001ab  00000000  00000000  00001c56  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000a8  00000000  00000000  00001e01  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 d1 01 	jmp	0x3a2	; 0x3a2 <__vector_6>
+  1c:	0c 94 0f 02 	jmp	0x41e	; 0x41e <__vector_7>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 e1       	ldi	r30, 0x14	; 20
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 3e       	cpi	r26, 0xE0	; 224
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	11 e0       	ldi	r17, 0x01	; 1
+  78:	a0 ee       	ldi	r26, 0xE0	; 224
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a1 30       	cpi	r26, 0x01	; 1
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 8c 01 	call	0x318	; 0x318 <main>
+  8a:	0c 94 88 02 	jmp	0x510	; 0x510 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <USARTInit>:
+void USARTInit(uint16_t ubrr_value)
+{
+
+   //Set Baud rate
+
+   UBRRL = ubrr_value;
+  92:	89 b9       	out	0x09, r24	; 9
+   UBRRH = (ubrr_value>>8);
+  94:	90 bd       	out	0x20, r25	; 32
+
+   >> char size 8
+
+   */
+
+   UCSRC=(1<<URSEL)|(3<<UCSZ0);
+  96:	86 e8       	ldi	r24, 0x86	; 134
+  98:	80 bd       	out	0x20, r24	; 32
+
+
+   //Enable The receiver and transmitter
+
+   UCSRB=(1<<RXEN)|(1<<TXEN);
+  9a:	88 e1       	ldi	r24, 0x18	; 24
+  9c:	8a b9       	out	0x0a, r24	; 10
+
+
+}
+  9e:	08 95       	ret
+
+000000a0 <USARTReadChar>:
+//available.
+char USARTReadChar()
+{
+   //Wait untill a data is available
+
+   while(!(UCSRA & (1<<RXC)))
+  a0:	5f 9b       	sbis	0x0b, 7	; 11
+  a2:	fe cf       	rjmp	.-4      	; 0xa0 <USARTReadChar>
+   }
+
+   //Now USART has got data from host
+   //and is available is buffer
+
+   return UDR;
+  a4:	8c b1       	in	r24, 0x0c	; 12
+}
+  a6:	08 95       	ret
+
+000000a8 <USARTWriteChar>:
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+  a8:	5d 9b       	sbis	0x0b, 5	; 11
+  aa:	fe cf       	rjmp	.-4      	; 0xa8 <USARTWriteChar>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+  ac:	8c b9       	out	0x0c, r24	; 12
+}
+  ae:	08 95       	ret
+
+000000b0 <USART_newline>:
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+  b0:	5d 9b       	sbis	0x0b, 5	; 11
+  b2:	fe cf       	rjmp	.-4      	; 0xb0 <USART_newline>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+  b4:	8d e0       	ldi	r24, 0x0D	; 13
+  b6:	8c b9       	out	0x0c, r24	; 12
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+  b8:	5d 9b       	sbis	0x0b, 5	; 11
+  ba:	fe cf       	rjmp	.-4      	; 0xb8 <USART_newline+0x8>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+  bc:	8a e0       	ldi	r24, 0x0A	; 10
+  be:	8c b9       	out	0x0c, r24	; 12
+{
+    USARTWriteChar('\r');
+		 USARTWriteChar('\n');
+
+  return;
+}
+  c0:	08 95       	ret
+
+000000c2 <USARTWrite_S_Char>:
+
+void USARTWrite_S_Char(char *data)
+{
+  c2:	fc 01       	movw	r30, r24
+  c4:	04 c0       	rjmp	.+8      	; 0xce <USARTWrite_S_Char+0xc>
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+  c6:	5d 9b       	sbis	0x0b, 5	; 11
+  c8:	fe cf       	rjmp	.-4      	; 0xc6 <USARTWrite_S_Char+0x4>
+{
+   unsigned char c;
+
+   while(*data)
+   {
+      USARTWriteChar(*data++);
+  ca:	31 96       	adiw	r30, 0x01	; 1
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+  cc:	8c b9       	out	0x0c, r24	; 12
+
+void USARTWrite_S_Char(char *data)
+{
+   unsigned char c;
+
+   while(*data)
+  ce:	80 81       	ld	r24, Z
+  d0:	88 23       	and	r24, r24
+  d2:	c9 f7       	brne	.-14     	; 0xc6 <USARTWrite_S_Char+0x4>
+   {
+      USARTWriteChar(*data++);
+   }
+   USART_newline();
+  d4:	0e 94 58 00 	call	0xb0	; 0xb0 <USART_newline>
+   return;
+   //Now write the data to USART buffer
+}
+  d8:	08 95       	ret
+
+000000da <char2int>:
+
+char char2int(char a)
+{
+    if ((a>='0') && (a<='9'))   return (a-48);
+  da:	80 53       	subi	r24, 0x30	; 48
+  dc:	8a 30       	cpi	r24, 0x0A	; 10
+  de:	28 f0       	brcs	.+10     	; 0xea <char2int+0x10>
+	else  { 
+		USARTWrite_S_Char(" this is not a nomber");
+  e0:	80 e6       	ldi	r24, 0x60	; 96
+  e2:	90 e0       	ldi	r25, 0x00	; 0
+  e4:	0e 94 61 00 	call	0xc2	; 0xc2 <USARTWrite_S_Char>
+  e8:	80 e0       	ldi	r24, 0x00	; 0
+		return 0;   // optimisation: fonction goto
+	}
+}
+  ea:	08 95       	ret
+
+000000ec <read_nomber>:
+char read_nomber(void)
+    {
+  ec:	ff 92       	push	r15
+  ee:	0f 93       	push	r16
+  f0:	1f 93       	push	r17
+//available.
+char USARTReadChar()
+{
+   //Wait untill a data is available
+
+   while(!(UCSRA & (1<<RXC)))
+  f2:	5f 9b       	sbis	0x0b, 7	; 11
+  f4:	fe cf       	rjmp	.-4      	; 0xf2 <read_nomber+0x6>
+   }
+
+   //Now USART has got data from host
+   //and is available is buffer
+
+   return UDR;
+  f6:	8c b1       	in	r24, 0x0c	; 12
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+  f8:	5d 9b       	sbis	0x0b, 5	; 11
+  fa:	fe cf       	rjmp	.-4      	; 0xf8 <read_nomber+0xc>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+  fc:	8c b9       	out	0x0c, r24	; 12
+	 char data3;
+	 char data4;
+
+	 data1=USARTReadChar();
+	 USARTWriteChar(data1);
+	 data1=char2int(data1);
+  fe:	0e 94 6d 00 	call	0xda	; 0xda <char2int>
+ 102:	f8 2e       	mov	r15, r24
+//available.
+char USARTReadChar()
+{
+   //Wait untill a data is available
+
+   while(!(UCSRA & (1<<RXC)))
+ 104:	5f 9b       	sbis	0x0b, 7	; 11
+ 106:	fe cf       	rjmp	.-4      	; 0x104 <read_nomber+0x18>
+   }
+
+   //Now USART has got data from host
+   //and is available is buffer
+
+   return UDR;
+ 108:	8c b1       	in	r24, 0x0c	; 12
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+ 10a:	5d 9b       	sbis	0x0b, 5	; 11
+ 10c:	fe cf       	rjmp	.-4      	; 0x10a <read_nomber+0x1e>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+ 10e:	8c b9       	out	0x0c, r24	; 12
+	 USARTWriteChar(data1);
+	 data1=char2int(data1);
+
+	 data2=USARTReadChar();
+	 USARTWriteChar(data2);
+	 data2=char2int(data2);
+ 110:	0e 94 6d 00 	call	0xda	; 0xda <char2int>
+ 114:	08 2f       	mov	r16, r24
+//available.
+char USARTReadChar()
+{
+   //Wait untill a data is available
+
+   while(!(UCSRA & (1<<RXC)))
+ 116:	5f 9b       	sbis	0x0b, 7	; 11
+ 118:	fe cf       	rjmp	.-4      	; 0x116 <read_nomber+0x2a>
+   }
+
+   //Now USART has got data from host
+   //and is available is buffer
+
+   return UDR;
+ 11a:	8c b1       	in	r24, 0x0c	; 12
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+ 11c:	5d 9b       	sbis	0x0b, 5	; 11
+ 11e:	fe cf       	rjmp	.-4      	; 0x11c <read_nomber+0x30>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+ 120:	8c b9       	out	0x0c, r24	; 12
+	 USARTWriteChar(data2);
+	 data2=char2int(data2);
+
+	 data3=USARTReadChar();
+	 USARTWriteChar(data3);
+	 data3=char2int(data3);
+ 122:	0e 94 6d 00 	call	0xda	; 0xda <char2int>
+ 126:	18 2f       	mov	r17, r24
+//available.
+char USARTReadChar()
+{
+   //Wait untill a data is available
+
+   while(!(UCSRA & (1<<RXC)))
+ 128:	5f 9b       	sbis	0x0b, 7	; 11
+ 12a:	fe cf       	rjmp	.-4      	; 0x128 <read_nomber+0x3c>
+   }
+
+   //Now USART has got data from host
+   //and is available is buffer
+
+   return UDR;
+ 12c:	8c b1       	in	r24, 0x0c	; 12
+//the USART which then transmit it via TX line
+void USARTWriteChar(char data)
+{
+   //Wait untill the transmitter is ready
+
+   while(!(UCSRA & (1<<UDRE)))
+ 12e:	5d 9b       	sbis	0x0b, 5	; 11
+ 130:	fe cf       	rjmp	.-4      	; 0x12e <read_nomber+0x42>
+      //Do nothing
+   }
+
+   //Now write the data to USART buffer
+
+   UDR=data;
+ 132:	8c b9       	out	0x0c, r24	; 12
+	 USARTWriteChar(data3);
+	 data3=char2int(data3);
+
+     data4=USARTReadChar();
+	 USARTWriteChar(data4);
+	 data4=char2int(data4);
+ 134:	0e 94 6d 00 	call	0xda	; 0xda <char2int>
+ 138:	28 ee       	ldi	r18, 0xE8	; 232
+ 13a:	33 e0       	ldi	r19, 0x03	; 3
+ 13c:	f2 9e       	mul	r15, r18
+ 13e:	20 2d       	mov	r18, r0
+ 140:	11 24       	eor	r1, r1
+ 142:	44 e6       	ldi	r20, 0x64	; 100
+ 144:	04 9f       	mul	r16, r20
+ 146:	a0 01       	movw	r20, r0
+ 148:	11 24       	eor	r1, r1
+ 14a:	24 0f       	add	r18, r20
+ 14c:	28 0f       	add	r18, r24
+ 14e:	8a e0       	ldi	r24, 0x0A	; 10
+ 150:	18 9f       	mul	r17, r24
+ 152:	c0 01       	movw	r24, r0
+ 154:	11 24       	eor	r1, r1
+
+	 data=(data1*1000)+(data2*100)+(data3*10)+data4;
+
+
+	 return data;
+	}
+ 156:	82 0f       	add	r24, r18
+ 158:	1f 91       	pop	r17
+ 15a:	0f 91       	pop	r16
+ 15c:	ff 90       	pop	r15
+ 15e:	08 95       	ret
+
+00000160 <config_timer>:
+
+
+void config_timer(void)
+    {
+	 // configuration pour le servo
+	 TCCR1B = (1 << WGM12)| (1 << CS10);
+ 160:	89 e0       	ldi	r24, 0x09	; 9
+ 162:	8e bd       	out	0x2e, r24	; 46
+     OCR1A = PULSE_MAX_WIDTH + 10 ;
+ 164:	8a e6       	ldi	r24, 0x6A	; 106
+ 166:	99 e0       	ldi	r25, 0x09	; 9
+ 168:	9b bd       	out	0x2b, r25	; 43
+ 16a:	8a bd       	out	0x2a, r24	; 42
+     OCR1B = PULSE_MED_WIDTH ;
+ 16c:	8c ed       	ldi	r24, 0xDC	; 220
+ 16e:	95 e0       	ldi	r25, 0x05	; 5
+ 170:	99 bd       	out	0x29, r25	; 41
+ 172:	88 bd       	out	0x28, r24	; 40
+     TCNT1 = OCR1B + 10 ;
+ 174:	88 b5       	in	r24, 0x28	; 40
+ 176:	99 b5       	in	r25, 0x29	; 41
+ 178:	0a 96       	adiw	r24, 0x0a	; 10
+ 17a:	9d bd       	out	0x2d, r25	; 45
+ 17c:	8c bd       	out	0x2c, r24	; 44
+     TIMSK = (1 << OCIE1A)| (1 << OCIE1B);
+ 17e:	88 e1       	ldi	r24, 0x18	; 24
+ 180:	89 bf       	out	0x39, r24	; 57
+
+  
+}
+ 182:	08 95       	ret
+
+00000184 <config_interface>:
+
+
+
+void config_interface(void)
+    {
+      DDRD|=0xfc;  //declaration de port c comme sortie des servo
+ 184:	81 b3       	in	r24, 0x11	; 17
+ 186:	8c 6f       	ori	r24, 0xFC	; 252
+ 188:	81 bb       	out	0x11, r24	; 17
+      DDRC=0XFF;
+ 18a:	8f ef       	ldi	r24, 0xFF	; 255
+ 18c:	84 bb       	out	0x14, r24	; 20
+	}
+ 18e:	08 95       	ret
+
+00000190 <pos_2>:
+}
+
+void pos_2(void)
+{
+    
+    move_servo(0,POS1);          //pulse_widths[2]=2400;
+ 190:	80 e0       	ldi	r24, 0x00	; 0
+ 192:	90 e0       	ldi	r25, 0x00	; 0
+ 194:	64 e8       	ldi	r22, 0x84	; 132
+ 196:	73 e0       	ldi	r23, 0x03	; 3
+ 198:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(1,POS0);          //pulse_widths[1]=1400;
+ 19c:	81 e0       	ldi	r24, 0x01	; 1
+ 19e:	90 e0       	ldi	r25, 0x00	; 0
+ 1a0:	6c ed       	ldi	r22, 0xDC	; 220
+ 1a2:	75 e0       	ldi	r23, 0x05	; 5
+ 1a4:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(2,POS2);          //pulse_widths[0]=1400;
+ 1a8:	82 e0       	ldi	r24, 0x02	; 2
+ 1aa:	90 e0       	ldi	r25, 0x00	; 0
+ 1ac:	68 e9       	ldi	r22, 0x98	; 152
+ 1ae:	78 e0       	ldi	r23, 0x08	; 8
+ 1b0:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(3,POS2);
+ 1b4:	83 e0       	ldi	r24, 0x03	; 3
+ 1b6:	90 e0       	ldi	r25, 0x00	; 0
+ 1b8:	68 e9       	ldi	r22, 0x98	; 152
+ 1ba:	78 e0       	ldi	r23, 0x08	; 8
+ 1bc:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(4,POS0);
+ 1c0:	84 e0       	ldi	r24, 0x04	; 4
+ 1c2:	90 e0       	ldi	r25, 0x00	; 0
+ 1c4:	6c ed       	ldi	r22, 0xDC	; 220
+ 1c6:	75 e0       	ldi	r23, 0x05	; 5
+ 1c8:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(5,POS2);
+ 1cc:	85 e0       	ldi	r24, 0x05	; 5
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	68 e9       	ldi	r22, 0x98	; 152
+ 1d2:	78 e0       	ldi	r23, 0x08	; 8
+ 1d4:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(6,POS0);
+ 1d8:	86 e0       	ldi	r24, 0x06	; 6
+ 1da:	90 e0       	ldi	r25, 0x00	; 0
+ 1dc:	6c ed       	ldi	r22, 0xDC	; 220
+ 1de:	75 e0       	ldi	r23, 0x05	; 5
+ 1e0:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(7,POS1);
+ 1e4:	87 e0       	ldi	r24, 0x07	; 7
+ 1e6:	90 e0       	ldi	r25, 0x00	; 0
+ 1e8:	64 e8       	ldi	r22, 0x84	; 132
+ 1ea:	73 e0       	ldi	r23, 0x03	; 3
+ 1ec:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+		  
+}
+ 1f0:	08 95       	ret
+
+000001f2 <pos_1>:
+
+
+void pos_1(void)
+{
+    
+    move_servo(0,POS1);          //pulse_widths[2]=2400;
+ 1f2:	80 e0       	ldi	r24, 0x00	; 0
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	64 e8       	ldi	r22, 0x84	; 132
+ 1f8:	73 e0       	ldi	r23, 0x03	; 3
+ 1fa:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(1,POS1);          //pulse_widths[1]=1400;
+ 1fe:	81 e0       	ldi	r24, 0x01	; 1
+ 200:	90 e0       	ldi	r25, 0x00	; 0
+ 202:	64 e8       	ldi	r22, 0x84	; 132
+ 204:	73 e0       	ldi	r23, 0x03	; 3
+ 206:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(2,POS1);          //pulse_widths[0]=1400;
+ 20a:	82 e0       	ldi	r24, 0x02	; 2
+ 20c:	90 e0       	ldi	r25, 0x00	; 0
+ 20e:	64 e8       	ldi	r22, 0x84	; 132
+ 210:	73 e0       	ldi	r23, 0x03	; 3
+ 212:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(3,POS1);
+ 216:	83 e0       	ldi	r24, 0x03	; 3
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	64 e8       	ldi	r22, 0x84	; 132
+ 21c:	73 e0       	ldi	r23, 0x03	; 3
+ 21e:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(4,POS1);
+ 222:	84 e0       	ldi	r24, 0x04	; 4
+ 224:	90 e0       	ldi	r25, 0x00	; 0
+ 226:	64 e8       	ldi	r22, 0x84	; 132
+ 228:	73 e0       	ldi	r23, 0x03	; 3
+ 22a:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(5,POS1);
+ 22e:	85 e0       	ldi	r24, 0x05	; 5
+ 230:	90 e0       	ldi	r25, 0x00	; 0
+ 232:	64 e8       	ldi	r22, 0x84	; 132
+ 234:	73 e0       	ldi	r23, 0x03	; 3
+ 236:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(6,POS1);
+ 23a:	86 e0       	ldi	r24, 0x06	; 6
+ 23c:	90 e0       	ldi	r25, 0x00	; 0
+ 23e:	64 e8       	ldi	r22, 0x84	; 132
+ 240:	73 e0       	ldi	r23, 0x03	; 3
+ 242:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(7,POS1);
+ 246:	87 e0       	ldi	r24, 0x07	; 7
+ 248:	90 e0       	ldi	r25, 0x00	; 0
+ 24a:	64 e8       	ldi	r22, 0x84	; 132
+ 24c:	73 e0       	ldi	r23, 0x03	; 3
+ 24e:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+		  
+}
+ 252:	08 95       	ret
+
+00000254 <pos_0>:
+}
+
+void pos_0(void)
+{
+    
+    move_servo(0,POS0);          //pulse_widths[2]=2400;
+ 254:	80 e0       	ldi	r24, 0x00	; 0
+ 256:	90 e0       	ldi	r25, 0x00	; 0
+ 258:	6c ed       	ldi	r22, 0xDC	; 220
+ 25a:	75 e0       	ldi	r23, 0x05	; 5
+ 25c:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(1,POS0);          //pulse_widths[1]=1400;
+ 260:	81 e0       	ldi	r24, 0x01	; 1
+ 262:	90 e0       	ldi	r25, 0x00	; 0
+ 264:	6c ed       	ldi	r22, 0xDC	; 220
+ 266:	75 e0       	ldi	r23, 0x05	; 5
+ 268:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(2,POS0);          //pulse_widths[0]=1400;
+ 26c:	82 e0       	ldi	r24, 0x02	; 2
+ 26e:	90 e0       	ldi	r25, 0x00	; 0
+ 270:	6c ed       	ldi	r22, 0xDC	; 220
+ 272:	75 e0       	ldi	r23, 0x05	; 5
+ 274:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(3,POS0);
+ 278:	83 e0       	ldi	r24, 0x03	; 3
+ 27a:	90 e0       	ldi	r25, 0x00	; 0
+ 27c:	6c ed       	ldi	r22, 0xDC	; 220
+ 27e:	75 e0       	ldi	r23, 0x05	; 5
+ 280:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(4,POS0);
+ 284:	84 e0       	ldi	r24, 0x04	; 4
+ 286:	90 e0       	ldi	r25, 0x00	; 0
+ 288:	6c ed       	ldi	r22, 0xDC	; 220
+ 28a:	75 e0       	ldi	r23, 0x05	; 5
+ 28c:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(5,POS0);
+ 290:	85 e0       	ldi	r24, 0x05	; 5
+ 292:	90 e0       	ldi	r25, 0x00	; 0
+ 294:	6c ed       	ldi	r22, 0xDC	; 220
+ 296:	75 e0       	ldi	r23, 0x05	; 5
+ 298:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(6,POS0);
+ 29c:	86 e0       	ldi	r24, 0x06	; 6
+ 29e:	90 e0       	ldi	r25, 0x00	; 0
+ 2a0:	6c ed       	ldi	r22, 0xDC	; 220
+ 2a2:	75 e0       	ldi	r23, 0x05	; 5
+ 2a4:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(7,POS0);
+ 2a8:	87 e0       	ldi	r24, 0x07	; 7
+ 2aa:	90 e0       	ldi	r25, 0x00	; 0
+ 2ac:	6c ed       	ldi	r22, 0xDC	; 220
+ 2ae:	75 e0       	ldi	r23, 0x05	; 5
+ 2b0:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+		  
+}
+ 2b4:	08 95       	ret
+
+000002b6 <position_sleep>:
+
+	
+void position_sleep(void)
+{
+    
+    move_servo(0,SLEEP_SERVO_0);          //pulse_widths[2]=2400;
+ 2b6:	80 e0       	ldi	r24, 0x00	; 0
+ 2b8:	90 e0       	ldi	r25, 0x00	; 0
+ 2ba:	68 e0       	ldi	r22, 0x08	; 8
+ 2bc:	77 e0       	ldi	r23, 0x07	; 7
+ 2be:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(1,SLEEP_SERVO_0);          //pulse_widths[1]=1400;
+ 2c2:	81 e0       	ldi	r24, 0x01	; 1
+ 2c4:	90 e0       	ldi	r25, 0x00	; 0
+ 2c6:	68 e0       	ldi	r22, 0x08	; 8
+ 2c8:	77 e0       	ldi	r23, 0x07	; 7
+ 2ca:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+    move_servo(2,SLEEP_SERVO_0);          //pulse_widths[0]=1400;
+ 2ce:	82 e0       	ldi	r24, 0x02	; 2
+ 2d0:	90 e0       	ldi	r25, 0x00	; 0
+ 2d2:	68 e0       	ldi	r22, 0x08	; 8
+ 2d4:	77 e0       	ldi	r23, 0x07	; 7
+ 2d6:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(3,SLEEP_SERVO_0);
+ 2da:	83 e0       	ldi	r24, 0x03	; 3
+ 2dc:	90 e0       	ldi	r25, 0x00	; 0
+ 2de:	68 e0       	ldi	r22, 0x08	; 8
+ 2e0:	77 e0       	ldi	r23, 0x07	; 7
+ 2e2:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(4,SLEEP_SERVO_0);
+ 2e6:	84 e0       	ldi	r24, 0x04	; 4
+ 2e8:	90 e0       	ldi	r25, 0x00	; 0
+ 2ea:	68 e0       	ldi	r22, 0x08	; 8
+ 2ec:	77 e0       	ldi	r23, 0x07	; 7
+ 2ee:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(5,SLEEP_SERVO_0);
+ 2f2:	85 e0       	ldi	r24, 0x05	; 5
+ 2f4:	90 e0       	ldi	r25, 0x00	; 0
+ 2f6:	68 e0       	ldi	r22, 0x08	; 8
+ 2f8:	77 e0       	ldi	r23, 0x07	; 7
+ 2fa:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(6,SLEEP_SERVO_0);
+ 2fe:	86 e0       	ldi	r24, 0x06	; 6
+ 300:	90 e0       	ldi	r25, 0x00	; 0
+ 302:	68 e0       	ldi	r22, 0x08	; 8
+ 304:	77 e0       	ldi	r23, 0x07	; 7
+ 306:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+	move_servo(7,SLEEP_SERVO_0);
+ 30a:	87 e0       	ldi	r24, 0x07	; 7
+ 30c:	90 e0       	ldi	r25, 0x00	; 0
+ 30e:	68 e0       	ldi	r22, 0x08	; 8
+ 310:	77 e0       	ldi	r23, 0x07	; 7
+ 312:	0e 94 4b 02 	call	0x496	; 0x496 <move_servo>
+		  
+}
+ 316:	08 95       	ret
+
+00000318 <main>:
+		  
+}
+
+
+int main(void)
+    {
+ 318:	cf 93       	push	r28
+ 31a:	df 93       	push	r29
+   
+	int pos,servo_n;
+
+
+
+     DDRC|=(1<<PC2);
+ 31c:	a2 9a       	sbi	0x14, 2	; 20
+	
+     USARTInit(25);  //boud rate to 2400
+ 31e:	89 e1       	ldi	r24, 0x19	; 25
+ 320:	90 e0       	ldi	r25, 0x00	; 0
+ 322:	0e 94 49 00 	call	0x92	; 0x92 <USARTInit>
+     position_sleep();
+ 326:	0e 94 5b 01 	call	0x2b6	; 0x2b6 <position_sleep>
+
+
+
+void config_interface(void)
+    {
+      DDRD|=0xfc;  //declaration de port c comme sortie des servo
+ 32a:	81 b3       	in	r24, 0x11	; 17
+ 32c:	8c 6f       	ori	r24, 0xFC	; 252
+ 32e:	81 bb       	out	0x11, r24	; 17
+      DDRC=0XFF;
+ 330:	8f ef       	ldi	r24, 0xFF	; 255
+ 332:	84 bb       	out	0x14, r24	; 20
+     DDRC|=(1<<PC2);
+	
+     USARTInit(25);  //boud rate to 2400
+     position_sleep();
+     config_interface();            //configuration des entrée et des sortie de ATMEGA16
+     config_timer();
+ 334:	0e 94 b0 00 	call	0x160	; 0x160 <config_timer>
+	 sei();
+ 338:	78 94       	sei
+
+
+	 USARTWrite_S_Char("   hello world   ");
+ 33a:	86 e7       	ldi	r24, 0x76	; 118
+ 33c:	90 e0       	ldi	r25, 0x00	; 0
+ 33e:	0e 94 61 00 	call	0xc2	; 0xc2 <USARTWrite_S_Char>
+	 USART_newline();
+ 342:	0e 94 58 00 	call	0xb0	; 0xb0 <USART_newline>
+     
+	 USARTWrite_S_Char("  This programme is for control of the quadreped  ");
+ 346:	88 e8       	ldi	r24, 0x88	; 136
+ 348:	90 e0       	ldi	r25, 0x00	; 0
+ 34a:	0e 94 61 00 	call	0xc2	; 0xc2 <USARTWrite_S_Char>
+      USART_newline(); 
+ 34e:	0e 94 58 00 	call	0xb0	; 0xb0 <USART_newline>
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 352:	c8 ea       	ldi	r28, 0xA8	; 168
+ 354:	d1 e6       	ldi	r29, 0x61	; 97
+ 356:	ce 01       	movw	r24, r28
+ 358:	01 97       	sbiw	r24, 0x01	; 1
+ 35a:	f1 f7       	brne	.-4      	; 0x358 <main+0x40>
+	    {
+	
+	    
+		    _delay_ms(100);
+	 	 
+	      USARTWrite_S_Char("  donner posirion entre 600 - 2400  ");
+ 35c:	8b eb       	ldi	r24, 0xBB	; 187
+ 35e:	90 e0       	ldi	r25, 0x00	; 0
+ 360:	0e 94 61 00 	call	0xc2	; 0xc2 <USARTWrite_S_Char>
+	      USART_newline();
+ 364:	0e 94 58 00 	call	0xb0	; 0xb0 <USART_newline>
+         pos=USARTReadChar()-0x30;
+ 368:	0e 94 50 00 	call	0xa0	; 0xa0 <USARTReadChar>
+ 36c:	c0 97       	sbiw	r24, 0x30	; 48
+	    
+		if(pos==0)
+ 36e:	19 f4       	brne	.+6      	; 0x376 <main+0x5e>
+		pos_0();
+ 370:	0e 94 2a 01 	call	0x254	; 0x254 <pos_0>
+ 374:	10 c0       	rjmp	.+32     	; 0x396 <main+0x7e>
+		else if(pos==1)
+ 376:	81 30       	cpi	r24, 0x01	; 1
+ 378:	91 05       	cpc	r25, r1
+ 37a:	19 f4       	brne	.+6      	; 0x382 <main+0x6a>
+         pos_1();
+ 37c:	0e 94 f9 00 	call	0x1f2	; 0x1f2 <pos_1>
+ 380:	0a c0       	rjmp	.+20     	; 0x396 <main+0x7e>
+		else if(pos==2)
+ 382:	82 30       	cpi	r24, 0x02	; 2
+ 384:	91 05       	cpc	r25, r1
+ 386:	19 f4       	brne	.+6      	; 0x38e <main+0x76>
+         pos_2();
+ 388:	0e 94 c8 00 	call	0x190	; 0x190 <pos_2>
+ 38c:	04 c0       	rjmp	.+8      	; 0x396 <main+0x7e>
+		 else if(pos==3)
+ 38e:	03 97       	sbiw	r24, 0x03	; 3
+ 390:	11 f4       	brne	.+4      	; 0x396 <main+0x7e>
+         position_sleep();
+ 392:	0e 94 5b 01 	call	0x2b6	; 0x2b6 <position_sleep>
+ 396:	ce 01       	movw	r24, r28
+ 398:	01 97       	sbiw	r24, 0x01	; 1
+ 39a:	f1 f7       	brne	.-4      	; 0x398 <main+0x80>
+        
+	    
+          _delay_ms(100);
+		  USART_newline();
+ 39c:	0e 94 58 00 	call	0xb0	; 0xb0 <USART_newline>
+ 3a0:	da cf       	rjmp	.-76     	; 0x356 <main+0x3e>
+
+000003a2 <__vector_6>:
+
+
+
+
+
+ISR(TIMER1_COMPA_vect) {
+ 3a2:	1f 92       	push	r1
+ 3a4:	0f 92       	push	r0
+ 3a6:	0f b6       	in	r0, 0x3f	; 63
+ 3a8:	0f 92       	push	r0
+ 3aa:	11 24       	eor	r1, r1
+ 3ac:	2f 93       	push	r18
+ 3ae:	3f 93       	push	r19
+ 3b0:	8f 93       	push	r24
+ 3b2:	9f 93       	push	r25
+ 3b4:	ef 93       	push	r30
+ 3b6:	ff 93       	push	r31
+    // On monte donc la sortie du servo en cours de traitement
+    // (en gérant la distribution des sorties sur les ports C et D)
+    if (cur_servo < 4) {
+ 3b8:	80 91 e0 00 	lds	r24, 0x00E0
+ 3bc:	84 30       	cpi	r24, 0x04	; 4
+ 3be:	68 f4       	brcc	.+26     	; 0x3da <__vector_6+0x38>
+        PORTC |= (1 << cur_servo) ;
+ 3c0:	85 b3       	in	r24, 0x15	; 21
+ 3c2:	90 91 e0 00 	lds	r25, 0x00E0
+ 3c6:	21 e0       	ldi	r18, 0x01	; 1
+ 3c8:	30 e0       	ldi	r19, 0x00	; 0
+ 3ca:	02 c0       	rjmp	.+4      	; 0x3d0 <__vector_6+0x2e>
+ 3cc:	22 0f       	add	r18, r18
+ 3ce:	33 1f       	adc	r19, r19
+ 3d0:	9a 95       	dec	r25
+ 3d2:	e2 f7       	brpl	.-8      	; 0x3cc <__vector_6+0x2a>
+ 3d4:	82 2b       	or	r24, r18
+ 3d6:	85 bb       	out	0x15, r24	; 21
+ 3d8:	0c c0       	rjmp	.+24     	; 0x3f2 <__vector_6+0x50>
+    } else {
+        PORTD |= (1 << cur_servo) ;
+ 3da:	82 b3       	in	r24, 0x12	; 18
+ 3dc:	90 91 e0 00 	lds	r25, 0x00E0
+ 3e0:	21 e0       	ldi	r18, 0x01	; 1
+ 3e2:	30 e0       	ldi	r19, 0x00	; 0
+ 3e4:	02 c0       	rjmp	.+4      	; 0x3ea <__vector_6+0x48>
+ 3e6:	22 0f       	add	r18, r18
+ 3e8:	33 1f       	adc	r19, r19
+ 3ea:	9a 95       	dec	r25
+ 3ec:	e2 f7       	brpl	.-8      	; 0x3e6 <__vector_6+0x44>
+ 3ee:	82 2b       	or	r24, r18
+ 3f0:	82 bb       	out	0x12, r24	; 18
+    }
+
+    // On définit le comparateur B en fonction de la durée de l'impulsion à générer
+    OCR1B = pulse_widths[cur_servo] ;
+ 3f2:	e0 91 e0 00 	lds	r30, 0x00E0
+ 3f6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3f8:	ee 0f       	add	r30, r30
+ 3fa:	ff 1f       	adc	r31, r31
+ 3fc:	ef 51       	subi	r30, 0x1F	; 31
+ 3fe:	ff 4f       	sbci	r31, 0xFF	; 255
+ 400:	80 81       	ld	r24, Z
+ 402:	91 81       	ldd	r25, Z+1	; 0x01
+ 404:	99 bd       	out	0x29, r25	; 41
+ 406:	88 bd       	out	0x28, r24	; 40
+}
+ 408:	ff 91       	pop	r31
+ 40a:	ef 91       	pop	r30
+ 40c:	9f 91       	pop	r25
+ 40e:	8f 91       	pop	r24
+ 410:	3f 91       	pop	r19
+ 412:	2f 91       	pop	r18
+ 414:	0f 90       	pop	r0
+ 416:	0f be       	out	0x3f, r0	; 63
+ 418:	0f 90       	pop	r0
+ 41a:	1f 90       	pop	r1
+ 41c:	18 95       	reti
+
+0000041e <__vector_7>:
+    Interrupt handler pour l'Ouput Compare B du timer 1
+
+    Le passage à cette valeur correspond à la fin du créneau pour
+    le servo en cours.
+*/
+ISR(TIMER1_COMPB_vect) {
+ 41e:	1f 92       	push	r1
+ 420:	0f 92       	push	r0
+ 422:	0f b6       	in	r0, 0x3f	; 63
+ 424:	0f 92       	push	r0
+ 426:	11 24       	eor	r1, r1
+ 428:	2f 93       	push	r18
+ 42a:	3f 93       	push	r19
+ 42c:	8f 93       	push	r24
+ 42e:	9f 93       	push	r25
+    // on descend la sortie du servo en cours de traitement
+    if (cur_servo < 4) {
+ 430:	80 91 e0 00 	lds	r24, 0x00E0
+ 434:	84 30       	cpi	r24, 0x04	; 4
+ 436:	70 f4       	brcc	.+28     	; 0x454 <__vector_7+0x36>
+        PORTC &= ~(1 << cur_servo) ;
+ 438:	35 b3       	in	r19, 0x15	; 21
+ 43a:	20 91 e0 00 	lds	r18, 0x00E0
+ 43e:	81 e0       	ldi	r24, 0x01	; 1
+ 440:	90 e0       	ldi	r25, 0x00	; 0
+ 442:	02 c0       	rjmp	.+4      	; 0x448 <__vector_7+0x2a>
+ 444:	88 0f       	add	r24, r24
+ 446:	99 1f       	adc	r25, r25
+ 448:	2a 95       	dec	r18
+ 44a:	e2 f7       	brpl	.-8      	; 0x444 <__vector_7+0x26>
+ 44c:	80 95       	com	r24
+ 44e:	83 23       	and	r24, r19
+ 450:	85 bb       	out	0x15, r24	; 21
+ 452:	0d c0       	rjmp	.+26     	; 0x46e <__stack+0xf>
+    } else {
+        PORTD &= ~(1 << cur_servo) ;
+ 454:	32 b3       	in	r19, 0x12	; 18
+ 456:	20 91 e0 00 	lds	r18, 0x00E0
+ 45a:	81 e0       	ldi	r24, 0x01	; 1
+ 45c:	90 e0       	ldi	r25, 0x00	; 0
+ 45e:	02 c0       	rjmp	.+4      	; 0x464 <__stack+0x5>
+ 460:	88 0f       	add	r24, r24
+ 462:	99 1f       	adc	r25, r25
+ 464:	2a 95       	dec	r18
+ 466:	e2 f7       	brpl	.-8      	; 0x460 <__stack+0x1>
+ 468:	80 95       	com	r24
+ 46a:	83 23       	and	r24, r19
+ 46c:	82 bb       	out	0x12, r24	; 18
+    }
+
+    // on passe au servo suivant, en rebouclant en fin de série
+    if (++cur_servo == SERVO_COUNT) cur_servo = 0 ;
+ 46e:	80 91 e0 00 	lds	r24, 0x00E0
+ 472:	8f 5f       	subi	r24, 0xFF	; 255
+ 474:	80 93 e0 00 	sts	0x00E0, r24
+ 478:	80 91 e0 00 	lds	r24, 0x00E0
+ 47c:	88 30       	cpi	r24, 0x08	; 8
+ 47e:	11 f4       	brne	.+4      	; 0x484 <__stack+0x25>
+ 480:	10 92 e0 00 	sts	0x00E0, r1
+}
+ 484:	9f 91       	pop	r25
+ 486:	8f 91       	pop	r24
+ 488:	3f 91       	pop	r19
+ 48a:	2f 91       	pop	r18
+ 48c:	0f 90       	pop	r0
+ 48e:	0f be       	out	0x3f, r0	; 63
+ 490:	0f 90       	pop	r0
+ 492:	1f 90       	pop	r1
+ 494:	18 95       	reti
+
+00000496 <move_servo>:
+
+
+void move_servo(char servo_i,unsigned int pos)
+{
+
+	 pulse_widths_old[servo_i]=pulse_widths[servo_i];  // store old position of servo i
+ 496:	90 e0       	ldi	r25, 0x00	; 0
+ 498:	88 0f       	add	r24, r24
+ 49a:	99 1f       	adc	r25, r25
+ 49c:	dc 01       	movw	r26, r24
+ 49e:	af 51       	subi	r26, 0x1F	; 31
+ 4a0:	bf 4f       	sbci	r27, 0xFF	; 255
+ 4a2:	2d 91       	ld	r18, X+
+ 4a4:	3c 91       	ld	r19, X
+ 4a6:	11 97       	sbiw	r26, 0x01	; 1
+ 4a8:	fc 01       	movw	r30, r24
+ 4aa:	ef 50       	subi	r30, 0x0F	; 15
+ 4ac:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4ae:	31 83       	std	Z+1, r19	; 0x01
+ 4b0:	20 83       	st	Z, r18
+
+	 if (pos == pulse_widths_old[servo_i]);// do nothing;
+ 4b2:	80 81       	ld	r24, Z
+ 4b4:	91 81       	ldd	r25, Z+1	; 0x01
+ 4b6:	68 17       	cp	r22, r24
+ 4b8:	79 07       	cpc	r23, r25
+ 4ba:	49 f1       	breq	.+82     	; 0x50e <move_servo+0x78>
+	 else if ( pos > pulse_widths_old[servo_i])
+ 4bc:	80 81       	ld	r24, Z
+ 4be:	91 81       	ldd	r25, Z+1	; 0x01
+ 4c0:	86 17       	cp	r24, r22
+ 4c2:	97 07       	cpc	r25, r23
+ 4c4:	50 f0       	brcs	.+20     	; 0x4da <move_servo+0x44>
+ 4c6:	1b c0       	rjmp	.+54     	; 0x4fe <move_servo+0x68>
+	 {
+	     while ( pos > pulse_widths[servo_i])
+		     {
+	         pulse_widths[servo_i] = pulse_widths[servo_i] + STEP_SERVO;
+ 4c8:	80 81       	ld	r24, Z
+ 4ca:	91 81       	ldd	r25, Z+1	; 0x01
+ 4cc:	0a 96       	adiw	r24, 0x0a	; 10
+ 4ce:	91 83       	std	Z+1, r25	; 0x01
+ 4d0:	80 83       	st	Z, r24
+ 4d2:	c9 01       	movw	r24, r18
+ 4d4:	01 97       	sbiw	r24, 0x01	; 1
+ 4d6:	f1 f7       	brne	.-4      	; 0x4d4 <move_servo+0x3e>
+ 4d8:	03 c0       	rjmp	.+6      	; 0x4e0 <move_servo+0x4a>
+	 pulse_widths_old[servo_i]=pulse_widths[servo_i];  // store old position of servo i
+
+	 if (pos == pulse_widths_old[servo_i]);// do nothing;
+	 else if ( pos > pulse_widths_old[servo_i])
+	 {
+	     while ( pos > pulse_widths[servo_i])
+ 4da:	fd 01       	movw	r30, r26
+ 4dc:	24 ef       	ldi	r18, 0xF4	; 244
+ 4de:	31 e0       	ldi	r19, 0x01	; 1
+ 4e0:	80 81       	ld	r24, Z
+ 4e2:	91 81       	ldd	r25, Z+1	; 0x01
+ 4e4:	86 17       	cp	r24, r22
+ 4e6:	97 07       	cpc	r25, r23
+ 4e8:	78 f3       	brcs	.-34     	; 0x4c8 <move_servo+0x32>
+ 4ea:	08 95       	ret
+	         }
+	 }else
+	 {
+        while ( pos < pulse_widths[servo_i])
+		     {
+	         pulse_widths[servo_i] = pulse_widths[servo_i] - STEP_SERVO;
+ 4ec:	80 81       	ld	r24, Z
+ 4ee:	91 81       	ldd	r25, Z+1	; 0x01
+ 4f0:	0a 97       	sbiw	r24, 0x0a	; 10
+ 4f2:	91 83       	std	Z+1, r25	; 0x01
+ 4f4:	80 83       	st	Z, r24
+ 4f6:	c9 01       	movw	r24, r18
+ 4f8:	01 97       	sbiw	r24, 0x01	; 1
+ 4fa:	f1 f7       	brne	.-4      	; 0x4f8 <move_servo+0x62>
+ 4fc:	03 c0       	rjmp	.+6      	; 0x504 <move_servo+0x6e>
+	         pulse_widths[servo_i] = pulse_widths[servo_i] + STEP_SERVO;
+	         _delay_ms(TIME_STEP_SRV);
+	         }
+	 }else
+	 {
+        while ( pos < pulse_widths[servo_i])
+ 4fe:	fd 01       	movw	r30, r26
+ 500:	24 ef       	ldi	r18, 0xF4	; 244
+ 502:	31 e0       	ldi	r19, 0x01	; 1
+ 504:	80 81       	ld	r24, Z
+ 506:	91 81       	ldd	r25, Z+1	; 0x01
+ 508:	68 17       	cp	r22, r24
+ 50a:	79 07       	cpc	r23, r25
+ 50c:	78 f3       	brcs	.-34     	; 0x4ec <move_servo+0x56>
+ 50e:	08 95       	ret
+
+00000510 <_exit>:
+ 510:	f8 94       	cli
+
+00000512 <__stop_program>:
+ 512:	ff cf       	rjmp	.-2      	; 0x512 <__stop_program>
